@@ -10,7 +10,7 @@ if (formData) {
   form.elements.message.value = message;
 }
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', e => {
   e.preventDefault();
 
   localStorage.clear();
@@ -23,11 +23,14 @@ form.addEventListener('submit', (e) => {
   form.reset();
 });
 
-const onInput = throttle((e) => {
+const onInput = throttle(e => {
   const email = form.elements.email.value;
   const message = form.elements.message.value;
 
-  localStorage.setItem('feedback-form-state', JSON.stringify({ email, message }));
+  localStorage.setItem(
+    'feedback-form-state',
+    JSON.stringify({ email, message })
+  );
 }, 500);
 
 form.addEventListener('input', onInput);
